@@ -1,10 +1,11 @@
 import { router } from 'expo-router'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import FokusButton from './FokusButton'
+import { Routes } from '@/constants/routes'
 
 const HomeContent = () => {
   const handleNavigateToPomodoro = () => {
-    router.navigate('/pomodoro')
+    router.navigate(`/${Routes.TIMER.route}`)
   }
 
   return (

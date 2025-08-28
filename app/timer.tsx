@@ -24,7 +24,7 @@ const timers = [
   },
 ]
 
-const Pomodoro = () => {
+const Timer = () => {
   const [activeTimer, setActiveTimer] = useState(timers[0])
 
   return (
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Pomodoro
+export default Timer
