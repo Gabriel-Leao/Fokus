@@ -1,62 +1,34 @@
-import Actions from '@/components/Actions'
 import Footer from '@/components/Footer'
-import { useState } from 'react'
+import HomeContent from '@/components/HomeContent'
 import { Image, StyleSheet, View } from 'react-native'
 
-const timers = [
-  {
-    id: 'focus',
-    initialValue: 25 * 60,
-    image: require('../assets/images/foco_image.png'),
-    label: 'Foco',
-  },
-  {
-    id: 'short_break',
-    initialValue: 5 * 60,
-    image: require('../assets/images/short_break.png'),
-    label: 'Pausa curta',
-  },
-  {
-    id: 'long_break',
-    initialValue: 15 * 60,
-    image: require('../assets/images/long_break.png'),
-    label: 'Pausa longa',
-  },
-]
-
 const Index = () => {
-  const [activeTimer, setActiveTimer] = useState(timers[0])
-
   return (
-    <View style={styles.container}>
+    <View style={style.container}>
       <Image
-        source={activeTimer.image}
-        style={styles.image}
+        source={require('../assets/logo.png')}
+        style={style.logo}
       />
-      <Actions
-        activeTimer={activeTimer}
-        setActiveTimer={setActiveTimer}
-        timers={timers}
-      />
+      <HomeContent />
       <Footer />
     </View>
   )
 }
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#021123',
+    paddingTop: 104,
+    paddingBottom: 40,
     paddingHorizontal: 20,
-    paddingVertical: 40,
     gap: 40,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
-  image: {
-    width: 318,
-    height: 267,
-    resizeMode: 'contain',
+  logo: {
+    width: 157,
+    height: 40,
   },
 })
 

@@ -4,13 +4,19 @@ import { ReactNode } from 'react'
 type FokusButtonProps = {
   onPress: () => void
   title: string
-  icon: ReactNode
+  icon?: ReactNode
+  customStyle?: object
 }
 
-const FokusButton = ({ onPress, title, icon }: FokusButtonProps) => {
+const FokusButton = ({
+  onPress,
+  title,
+  icon,
+  customStyle,
+}: FokusButtonProps) => {
   return (
     <Pressable
-      style={styles.button}
+      style={[styles.button, customStyle]}
       onPress={onPress}>
       {icon}
       <Text style={styles.buttonText}>{title}</Text>

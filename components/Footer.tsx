@@ -14,6 +14,7 @@ const Footer = () => {
 export const styles = StyleSheet.create({
   footer: {
     width: '80%',
+    marginTop: 'auto',
   },
   footerText: {
     textAlign: 'center',
