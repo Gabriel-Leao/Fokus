@@ -1,3 +1,4 @@
+import { COLORS } from '@/constants/colors'
 import { StyleSheet, Text } from 'react-native'
 
 type TimerProps = {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     fontSize: 54,
     fontWeight: '600',
     textAlign: 'center',
-    color: '#fff',
+    color: COLORS.WHITE,
   },
 })
 

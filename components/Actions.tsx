@@ -4,7 +4,8 @@ import FokusButton from './FokusButton'
 import { TimerType } from '@/@types/TimerType'
 import Timer from './Timer'
 import { useRef, useState } from 'react'
-import {IconPause, IconPlay} from "@/components/Icons";
+import { IconPause, IconPlay } from '@/components/Icons'
+import { COLORS } from '@/constants/colors'
 
 type ActionsProps = {
   activeTimer: TimerType
@@ -63,7 +64,7 @@ const Actions = ({ activeTimer, setActiveTimer, timers }: ActionsProps) => {
       <FokusButton
         onPress={toggleTimer}
         title={isTimerRunning ? 'Pausar' : 'Começar'}
-        icon={isTimerRunning ? <IconPause /> : <IconPlay /> }
+        icon={isTimerRunning ? <IconPause /> : <IconPlay />}
       />
     </View>
   )
@@ -72,12 +73,13 @@ const Actions = ({ activeTimer, setActiveTimer, timers }: ActionsProps) => {
 const styles = StyleSheet.create({
   actions: {
     padding: 24,
-    backgroundColor: '#14448080',
-    width: '80%',
+    backgroundColor: COLORS.ROYAL_BLUE_50,
     borderRadius: 32,
     borderWidth: 2,
-    borderColor: '#144480',
+    borderColor: COLORS.ROYAL_BLUE,
     gap: 32,
+    width: '90%',
+    alignSelf: 'center',
   },
   timerSelector: {
     flexDirection: 'row',

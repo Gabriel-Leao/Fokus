@@ -1,4 +1,5 @@
 import { TimerType } from '@/@types/TimerType'
+import { COLORS } from '@/constants/colors'
 import { Pressable, StyleSheet, Text } from 'react-native'
 
 type TimerSelectorButtonProps = {
@@ -26,12 +27,12 @@ const TimerSelectorButton = ({
 
 const styles = StyleSheet.create({
   timerItemActive: {
-    backgroundColor: '#144480',
+    backgroundColor: COLORS.ROYAL_BLUE,
     borderRadius: 8,
   },
   timerItemText: {
     fontSize: 12.5,
-    color: '#fff',
+    color: COLORS.WHITE,
     padding: 8,
     fontWeight: '400',
   },

@@ -2,6 +2,7 @@ import { router } from 'expo-router'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import FokusButton from './FokusButton'
 import { Routes } from '@/constants/routes'
+import { COLORS } from '@/constants/colors'
 
 const HomeContent = () => {
   const handleNavigateToPomodoro = () => {
@@ -37,13 +38,13 @@ const styles = StyleSheet.create({
   },
   thinText: {
     fontSize: 26,
-    color: '#fff',
+    color: COLORS.WHITE,
     fontWeight: 'ultralight',
     textAlign: 'center',
   },
   regularText: {
     fontSize: 26,
-    color: '#FFFFFF',
+    color: COLORS.WHITE,
     fontWeight: 'bold',
     textAlign: 'center',
   },

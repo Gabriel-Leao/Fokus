@@ -1,23 +1,24 @@
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Drawer } from 'expo-router/drawer'
 import { Routes } from '@/constants/routes'
+import { COLORS } from '@/constants/colors'
 
 const screenOptions = {
   drawerStyle: {
-    backgroundColor: '#021123',
+    backgroundColor: COLORS.DARK_BLUE,
     gap: 8,
     paddingTop: 24,
   },
   headerStyle: {
-    backgroundColor: '#021123',
+    backgroundColor: COLORS.DARK_BLUE,
   },
   drawerLabelStyle: {
     fontSize: 22,
   },
-  headerTintColor: '#FFF',
+  headerTintColor: COLORS.WHITE,
   headerTitle: '',
-  drawerActiveTintColor: '#B872FF',
-  drawerInactiveTintColor: '#FFF',
+  drawerActiveTintColor: COLORS.PURPLE,
+  drawerInactiveTintColor: COLORS.WHITE,
   drawerActiveBackgroundColor: 'transparent',
 }
 

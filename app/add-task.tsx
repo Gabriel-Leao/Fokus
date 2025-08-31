@@ -1,10 +1,11 @@
-import { Text, View } from 'react-native'
+import ScreenContainer from '@/components/screen/ScreenContainer'
+import ScreenTitle from '@/components/screen/ScreenTitle'
 
 const AddTask = () => {
   return (
-    <View>
-      <Text>página para adicionar Tasks</Text>
-    </View>
+    <ScreenContainer>
+      <ScreenTitle>Adicionar tarefa:</ScreenTitle>
+    </ScreenContainer>
   )
 }
 

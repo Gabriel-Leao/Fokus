@@ -1,11 +1,14 @@
 import { Pressable, StyleSheet, Text } from 'react-native'
 import { ReactNode } from 'react'
+import { COLORS } from '@/constants/colors'
 
 type FokusButtonProps = {
   onPress: () => void
   title: string
   icon?: ReactNode
   customStyle?: object
+  customTextStyle?: object
+  outline?: boolean
 }
 
 const FokusButton = ({
@@ -13,20 +16,29 @@ const FokusButton = ({
   title,
   icon,
   customStyle,
+  customTextStyle,
+  outline,
 }: FokusButtonProps) => {
   return (
     <Pressable
-      style={[styles.button, customStyle]}
+      style={[styles.button, outline && styles.outlineButton, customStyle]}
       onPress={onPress}>
       {icon}
-      <Text style={styles.buttonText}>{title}</Text>
+      <Text
+        style={[
+          styles.buttonText,
+          outline && styles.outlineButtonText,
+          customTextStyle,
+        ]}>
+        {title}
+      </Text>
     </Pressable>
   )
 }
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#B872FF',
+    backgroundColor: COLORS.PURPLE,
     borderRadius: 32,
     padding: 8,
     flexDirection: 'row',
@@ -36,9 +48,17 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    color: '#021123',
+    color: COLORS.DARK_BLUE,
     fontSize: 18,
     fontWeight: '600',
+  },
+  outlineButton: {
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: COLORS.PURPLE,
+  },
+  outlineButtonText: {
+    color: COLORS.PURPLE,
   },
 })
 

@@ -1,3 +1,4 @@
+import { COLORS } from '@/constants/colors'
 import { StyleSheet, Text, View } from 'react-native'
 
 const Footer = () => {
@@ -13,12 +14,11 @@ const Footer = () => {
 
 export const styles = StyleSheet.create({
   footer: {
-    width: '80%',
     marginTop: 'auto',
   },
   footerText: {
     textAlign: 'center',
-    color: '#98A0A8',
+    color: COLORS.GREY,
     fontSize: 12.5,
     fontWeight: '400',
   },
