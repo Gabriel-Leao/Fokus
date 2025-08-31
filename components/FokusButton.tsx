@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   outlineButton: {
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.TRANSPARENT,
     borderWidth: 2,
     borderColor: COLORS.PURPLE,
   },

@@ -1,13 +1,13 @@
 import ScreenContainer from '@/components/screen/ScreenContainer'
 import FokusButton from '@/components/FokusButton'
-import Footer from '@/components/Footer'
 import { IconAddCircle } from '@/components/Icons'
 import TaskItem from '@/components/TaskItem'
-import { Routes } from '@/constants/routes'
+import { ROUTES } from '@/constants/routes'
 import { router } from 'expo-router'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import ScreenTitle from '@/components/screen/ScreenTitle'
 import { useState } from 'react'
+import { COLORS } from '@/constants/colors'
 
 const taskList = [
   {
@@ -31,7 +31,7 @@ const Tasks = () => {
   const [tasks, setTasks] = useState(taskList)
 
   const handleNavigateToAddTask = () => {
-    router.navigate(`/${Routes.ADD_TASK.route}`)
+    router.navigate(ROUTES.ADD_TASK.ROUTE)
   }
 
   const onHandleToggleTask = (id: number) => {
@@ -42,19 +42,25 @@ const Tasks = () => {
   }
 
   return (
-    <ScreenContainer customStyle={styles.containerCustom}>
+    <ScreenContainer>
       <ScreenTitle>Lista de tarefas:</ScreenTitle>
 
-      <View style={styles.tasks}>
-        {tasks.map((task) => (
-          <TaskItem
-            key={task.title}
-            title={task.title}
-            completed={task.completed}
-            onCheckToggle={() => onHandleToggleTask(task.id)}
-          />
-        ))}
-      </View>
+      {tasks.length > 0 ? (
+        <View style={styles.tasks}>
+          {tasks.map((task) => (
+            <TaskItem
+              key={task.title}
+              title={task.title}
+              completed={task.completed}
+              onCheckToggle={() => onHandleToggleTask(task.id)}
+            />
+          ))}
+        </View>
+      ) : (
+        <Text style={styles.noTasksText}>
+          Ainda não há tarefas na sua lista,{'\n'}que tal adicionar?
+        </Text>
+      )}
 
       <FokusButton
         title='Adicionar Tarefa'
@@ -63,18 +69,19 @@ const Tasks = () => {
         customStyle={styles.fokusButton}
         outline
       />
-
-      <Footer />
     </ScreenContainer>
   )
 }
 
 const styles = StyleSheet.create({
-  containerCustom: {
-    gap: 24,
-  },
   tasks: {
     gap: 8,
+  },
+  noTasksText: {
+    textAlign: 'center',
+    color: COLORS.GREY,
+    fontWeight: 'bold',
+    fontSize: 18,
   },
   fokusButton: {
     marginTop: 'auto',

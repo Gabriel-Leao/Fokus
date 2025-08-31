@@ -1,9 +1,12 @@
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Drawer } from 'expo-router/drawer'
-import { Routes } from '@/constants/routes'
+import { ROUTES } from '@/constants/routes'
 import { COLORS } from '@/constants/colors'
+import { IconLeftArrow } from '@/components/Icons'
+import { Pressable, StyleSheet } from 'react-native'
+import { router } from 'expo-router'
 
-const screenOptions = {
+const styles = StyleSheet.create({
   drawerStyle: {
     backgroundColor: COLORS.DARK_BLUE,
     gap: 8,
@@ -11,39 +14,66 @@ const screenOptions = {
   },
   headerStyle: {
     backgroundColor: COLORS.DARK_BLUE,
+    shadowColor: COLORS.TRANSPARENT,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
   },
   drawerLabelStyle: {
     fontSize: 22,
   },
+  backButton: {
+    width: 50,
+    height: 40,
+    padding: 8,
+    alignItems: 'center',
+  },
+})
+
+const screenOptions = {
+  drawerStyle: styles.drawerStyle,
+  headerStyle: styles.headerStyle,
+  drawerLabelStyle: styles.drawerLabelStyle,
   headerTintColor: COLORS.WHITE,
   headerTitle: '',
   drawerActiveTintColor: COLORS.PURPLE,
   drawerInactiveTintColor: COLORS.WHITE,
-  drawerActiveBackgroundColor: 'transparent',
+  drawerActiveBackgroundColor: COLORS.TRANSPARENT,
 }
 
 const Layout = () => {
+  const handleBackButtonPress = () => {
+    router.navigate(ROUTES.TASKS.ROUTE)
+  }
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer screenOptions={screenOptions}>
         <Drawer.Screen
-          name={Routes.HOME.route}
+          name={ROUTES.HOME.NAME}
           options={{ headerShown: false, drawerItemStyle: { display: 'none' } }}
         />
         <Drawer.Screen
-          name={Routes.ADD_TASK.route}
+          name={ROUTES.ADD_TASK.NAME}
           options={{
-            title: Routes.ADD_TASK.label,
             drawerItemStyle: { display: 'none' },
+            headerLeft: () => (
+              <Pressable
+                style={styles.backButton}
+                onPress={handleBackButtonPress}>
+                <IconLeftArrow />
+              </Pressable>
+            ),
           }}
         />
         <Drawer.Screen
-          name={Routes.TIMER.route}
-          options={{ title: Routes.TIMER.label }}
+          name={ROUTES.TIMER.NAME}
+          options={{ title: ROUTES.TIMER.LABEL }}
         />
         <Drawer.Screen
-          name={Routes.TASKS.route}
-          options={{ title: Routes.TASKS.label }}
+          name={ROUTES.TASKS.NAME}
+          options={{ title: ROUTES.TASKS.LABEL }}
         />
       </Drawer>
     </GestureHandlerRootView>

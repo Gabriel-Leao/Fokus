@@ -7,4 +7,5 @@ export const COLORS = {
   DARK_BLUE: '#021123',
   ROYAL_BLUE: '#144480',
   ROYAL_BLUE_50: '#14448050',
-}
+  TRANSPARENT: 'transparent',
+} as const

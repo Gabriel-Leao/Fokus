@@ -1,18 +1,24 @@
-export const Routes = {
+import { Href } from "expo-router";
+
+export const ROUTES = {
   HOME: {
-    route: 'index',
-    label: 'Home',
+    ROUTE: '/' as Href,
+    LABEL: 'Home',
+    NAME: 'index'
   },
   ADD_TASK: {
-    route: 'add-task',
-    label: 'Adicionar Tarefa',
+    ROUTE: '/add-task' as Href,
+    LABEL: 'Adicionar Tarefa',
+    NAME: 'add-task'
   },
   TASKS: {
-    route: 'tasks',
-    label: 'Tarefas',
+    ROUTE: '/tasks' as Href,
+    LABEL: 'Lista de tarefas',
+    NAME: 'tasks'
   },
   TIMER: {
-    route: 'timer',
-    label: 'Timer',
+    ROUTE: '/timer' as Href,
+    LABEL: 'Timer',
+    NAME: 'timer'
   },
 } as const

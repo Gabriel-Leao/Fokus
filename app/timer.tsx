@@ -1,6 +1,5 @@
 import Actions from '@/components/Actions'
 import ScreenContainer from '@/components/screen/ScreenContainer'
-import Footer from '@/components/Footer'
 import { useState } from 'react'
 import { Image, StyleSheet } from 'react-native'
 
@@ -39,7 +38,6 @@ const Timer = () => {
         setActiveTimer={setActiveTimer}
         timers={timers}
       />
-      <Footer />
     </ScreenContainer>
   )
 }

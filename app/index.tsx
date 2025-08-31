@@ -1,5 +1,4 @@
 import ScreenContainer from '@/components/screen/ScreenContainer'
-import Footer from '@/components/Footer'
 import HomeContent from '@/components/HomeContent'
 import { Image, StyleSheet } from 'react-native'
 
@@ -11,7 +10,6 @@ const Index = () => {
         style={style.logo}
       />
       <HomeContent />
-      <Footer />
     </ScreenContainer>
   )
 }
