@@ -1,30 +1,44 @@
 import { COLORS } from '@/constants/colors'
-import { StyleSheet, Text, View } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler'
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native'
 import FormButton from './FormButton'
 import { IconDelete, IconSave } from '../Icons'
 
 const AddTaskForm = () => {
   return (
-    <View style={styles.addTaskForm}>
-      <Text style={styles.addTaskFormTitle}>
-        Em que que você está{'\n'}trabalhando?
-      </Text>
-      <TextInput
-        style={styles.input}
-        numberOfLines={4}
-      />
-      <View style={styles.buttonContainer}>
-        <FormButton
-          icon={<IconDelete />}
-          label='Deletar'
-        />
-        <FormButton
-          icon={<IconSave />}
-          label='Salvar'
-        />
-      </View>
-    </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.addTaskForm}>
+          <Text style={styles.addTaskFormTitle}>
+            Em que que você está{'\n'}trabalhando?
+          </Text>
+          <TextInput
+            style={styles.input}
+            numberOfLines={4}
+            multiline={true}
+          />
+          <View style={styles.buttonContainer}>
+            <FormButton
+              icon={<IconDelete />}
+              label='Deletar'
+            />
+            <FormButton
+              icon={<IconSave />}
+              label='Salvar'
+            />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   )
 }
 
@@ -51,7 +65,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 24,
-    marginLeft: 'auto',
+    justifyContent: 'flex-end',
   },
 })
 
