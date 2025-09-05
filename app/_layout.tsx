@@ -5,6 +5,7 @@ import { COLORS } from '@/constants/colors'
 import { IconLeftArrow } from '@/components/Icons'
 import { Pressable, StyleSheet } from 'react-native'
 import { router } from 'expo-router'
+import { TasksProvider } from '@/components/context/TaskProvider'
 
 const styles = StyleSheet.create({
   drawerStyle: {
@@ -48,35 +49,40 @@ const Layout = () => {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <Drawer screenOptions={screenOptions}>
-        <Drawer.Screen
-          name={ROUTES.HOME.NAME}
-          options={{ headerShown: false, drawerItemStyle: { display: 'none' } }}
-        />
-        <Drawer.Screen
-          name={ROUTES.ADD_TASK.NAME}
-          options={{
-            drawerItemStyle: { display: 'none' },
-            headerLeft: () => (
-              <Pressable
-                style={styles.backButton}
-                onPress={handleBackButtonPress}>
-                <IconLeftArrow />
-              </Pressable>
-            ),
-          }}
-        />
-        <Drawer.Screen
-          name={ROUTES.TIMER.NAME}
-          options={{ title: ROUTES.TIMER.LABEL }}
-        />
-        <Drawer.Screen
-          name={ROUTES.TASKS.NAME}
-          options={{ title: ROUTES.TASKS.LABEL }}
-        />
-      </Drawer>
-    </GestureHandlerRootView>
+    <TasksProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Drawer screenOptions={screenOptions}>
+          <Drawer.Screen
+            name={ROUTES.HOME.NAME}
+            options={{
+              headerShown: false,
+              drawerItemStyle: { display: 'none' },
+            }}
+          />
+          <Drawer.Screen
+            name={ROUTES.ADD_TASK.NAME}
+            options={{
+              drawerItemStyle: { display: 'none' },
+              headerLeft: () => (
+                <Pressable
+                  style={styles.backButton}
+                  onPress={handleBackButtonPress}>
+                  <IconLeftArrow />
+                </Pressable>
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name={ROUTES.TIMER.NAME}
+            options={{ title: ROUTES.TIMER.LABEL }}
+          />
+          <Drawer.Screen
+            name={ROUTES.TASKS.NAME}
+            options={{ title: ROUTES.TASKS.LABEL }}
+          />
+        </Drawer>
+      </GestureHandlerRootView>
+    </TasksProvider>
   )
 }
 

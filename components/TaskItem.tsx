@@ -1,10 +1,9 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { IconCheck, IconEdit } from './Icons'
 import { COLORS } from '@/constants/colors'
+import { Task } from '@/@types/TaskType'
 
-export type TaskItemProps = {
-  title: string
-  completed: boolean
+export type TaskItemProps = Omit<Task, 'id'> & {
   onEdit?: () => void
   onCheckToggle?: () => void
 }

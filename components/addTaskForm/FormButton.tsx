@@ -5,11 +5,14 @@ import { Pressable, StyleSheet, Text } from 'react-native'
 type FormButtonProps = {
   icon: ReactNode
   label: string
+  onPress?: () => void
 }
 
-const FormButton = ({ icon, label }: FormButtonProps) => {
+const FormButton = ({ icon, label, onPress }: FormButtonProps) => {
   return (
-    <Pressable style={styles.button}>
+    <Pressable
+      style={styles.button}
+      onPress={onPress}>
       {icon}
       <Text style={styles.text}>{label}</Text>
     </Pressable>

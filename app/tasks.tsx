@@ -6,39 +6,14 @@ import { ROUTES } from '@/constants/routes'
 import { router } from 'expo-router'
 import { StyleSheet, Text, View } from 'react-native'
 import ScreenTitle from '@/components/screen/ScreenTitle'
-import { useState } from 'react'
 import { COLORS } from '@/constants/colors'
-
-const taskList = [
-  {
-    id: 1,
-    completed: true,
-    title: 'Estudar react Native',
-  },
-  {
-    id: 2,
-    completed: false,
-    title: 'Estudar react',
-  },
-  {
-    id: 3,
-    completed: false,
-    title: 'Lavar a louça',
-  },
-]
+import { useTaskContext } from '@/components/context/useTaskContext'
 
 const Tasks = () => {
-  const [tasks, setTasks] = useState(taskList)
+  const { tasks, toggleTaskCompletion } = useTaskContext()
 
   const handleNavigateToAddTask = () => {
     router.navigate(ROUTES.ADD_TASK.ROUTE)
-  }
-
-  const onHandleToggleTask = (id: number) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === id ? { ...task, completed: !task.completed } : task
-    )
-    setTasks(updatedTasks)
   }
 
   return (
@@ -52,7 +27,7 @@ const Tasks = () => {
               key={task.title}
               title={task.title}
               completed={task.completed}
-              onCheckToggle={() => onHandleToggleTask(task.id)}
+              onCheckToggle={() => toggleTaskCompletion(task.id)}
             />
           ))}
         </View>

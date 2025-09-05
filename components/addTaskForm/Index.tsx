@@ -11,8 +11,30 @@ import {
 } from 'react-native'
 import FormButton from './FormButton'
 import { IconDelete, IconSave } from '../Icons'
+import { useTaskContext } from '../context/useTaskContext'
+import { useState } from 'react'
+import { router } from 'expo-router'
+import { ROUTES } from '@/constants/routes'
 
 const AddTaskForm = () => {
+  const [taskTitle, setTaskTitle] = useState('')
+  const { addTask } = useTaskContext()
+
+  const handleBackToTasks = () => {
+    router.push(ROUTES.TASKS.ROUTE)
+  }
+
+  const handleAddTask = () => {
+    if (taskTitle.trim() === '') return
+    addTask(taskTitle)
+    setTaskTitle('')
+    handleBackToTasks()
+  }
+
+  const handleDeleteTask = () => {
+    console.log('task apagada')
+  }
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -25,15 +47,19 @@ const AddTaskForm = () => {
             style={styles.input}
             numberOfLines={4}
             multiline={true}
+            value={taskTitle}
+            onChangeText={setTaskTitle}
           />
           <View style={styles.buttonContainer}>
             <FormButton
               icon={<IconDelete />}
               label='Deletar'
+              onPress={handleDeleteTask}
             />
             <FormButton
               icon={<IconSave />}
               label='Salvar'
+              onPress={handleAddTask}
             />
           </View>
         </View>
