@@ -4,7 +4,7 @@ import { IconAddCircle } from '@/components/Icons'
 import TaskItem from '@/components/TaskItem'
 import { ROUTES } from '@/constants/routes'
 import { router } from 'expo-router'
-import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import ScreenTitle from '@/components/screen/ScreenTitle'
 import { COLORS } from '@/constants/colors'
 import { useTaskContext } from '@/components/context/useTaskContext'
@@ -16,21 +16,28 @@ const Tasks = () => {
     router.navigate(ROUTES.ADD_TASK.ROUTE)
   }
 
+  const handleNavigateToEditTask = (id: string) => {
+    router.navigate(ROUTES.TASK.withId(id))
+  }
+
   return (
     <ScreenContainer>
       <ScreenTitle>Lista de tarefas:</ScreenTitle>
 
       {tasks.length > 0 ? (
-        <View style={styles.tasks}>
-          {tasks.map((task) => (
+        <FlatList
+          data={tasks}
+          renderItem={({ item }) => (
             <TaskItem
-              key={task.title}
-              title={task.title}
-              completed={task.completed}
-              onCheckToggle={() => toggleTaskCompletion(task.id)}
+              title={item.title}
+              completed={item.completed}
+              onCheckToggle={() => toggleTaskCompletion(item.id)}
+              onEdit={() => handleNavigateToEditTask(item.id)}
             />
-          ))}
-        </View>
+          )}
+          keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={() => <View style={styles.tasksSeparator} />}
+        />
       ) : (
         <Text style={styles.noTasksText}>
           Ainda não há tarefas na sua lista,{'\n'}que tal adicionar?
@@ -49,8 +56,8 @@ const Tasks = () => {
 }
 
 const styles = StyleSheet.create({
-  tasks: {
-    gap: 8,
+  tasksSeparator: {
+    height: 8,
   },
   noTasksText: {
     textAlign: 'center',

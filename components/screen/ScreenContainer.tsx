@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     backgroundColor: COLORS.DARK_BLUE,
-    padding: 24,
+    paddingVertical: 40,
+    paddingHorizontal: 24,
     gap: 40,
   },
 })

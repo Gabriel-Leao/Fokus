@@ -12,9 +12,15 @@ export const ROUTES = {
     NAME: 'add-task'
   },
   TASKS: {
-    ROUTE: '/tasks' as Href,
-    LABEL: 'Lista de tarefas',
-    NAME: 'tasks'
+    ROUTE: "/tasks" as Href, // não precisa do index
+    LABEL: "Lista de tarefas",
+    NAME: "tasks/index",
+  },
+  TASK: {
+    ROUTE: "/tasks/[id]" as Href, // precisa bater com o nome do arquivo
+    LABEL: "Tarefa",
+    NAME: "tasks/[id]",
+    withId: (id: string): Href => `/tasks/${id}` as Href,
   },
   TIMER: {
     ROUTE: '/timer' as Href,

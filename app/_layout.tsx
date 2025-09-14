@@ -2,10 +2,10 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Drawer } from 'expo-router/drawer'
 import { ROUTES } from '@/constants/routes'
 import { COLORS } from '@/constants/colors'
-import { IconLeftArrow } from '@/components/Icons'
-import { Pressable, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { router } from 'expo-router'
 import { TasksProvider } from '@/components/context/TaskProvider'
+import BackButton from '@/components/BackButton'
 
 const styles = StyleSheet.create({
   drawerStyle: {
@@ -63,13 +63,7 @@ const Layout = () => {
             name={ROUTES.ADD_TASK.NAME}
             options={{
               drawerItemStyle: { display: 'none' },
-              headerLeft: () => (
-                <Pressable
-                  style={styles.backButton}
-                  onPress={handleBackButtonPress}>
-                  <IconLeftArrow />
-                </Pressable>
-              ),
+              headerLeft: () => <BackButton onPress={handleBackButtonPress} />,
             }}
           />
           <Drawer.Screen
@@ -79,6 +73,13 @@ const Layout = () => {
           <Drawer.Screen
             name={ROUTES.TASKS.NAME}
             options={{ title: ROUTES.TASKS.LABEL }}
+          />
+          <Drawer.Screen
+            name={ROUTES.TASK.NAME}
+            options={{
+              drawerItemStyle: { display: 'none' },
+              headerLeft: () => <BackButton onPress={handleBackButtonPress} />,
+            }}
           />
         </Drawer>
       </GestureHandlerRootView>
