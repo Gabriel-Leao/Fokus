@@ -1,6 +1,8 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Task } from '@/@types/TaskType'
 import { createTask } from '@/utils/helpers'
-import { createContext, useState } from 'react'
+import { createContext, useCallback, useEffect, useState } from 'react'
+import { TASKS_STORAGE_KEY } from '@/constants/tasksKey'
 
 type TaskContextType = {
   tasks: Task[]
@@ -15,6 +17,27 @@ export const TaskContext = createContext<TaskContextType | undefined>(undefined)
 
 export const TasksProvider = ({ children }: React.PropsWithChildren) => {
   const [tasks, setTasks] = useState<Task[]>([])
+  const [isDataFetched, setIsDataFetched] = useState(false)
+
+  const storeData = useCallback(async () => {
+    const jsonValue = JSON.stringify(tasks)
+    await AsyncStorage.setItem(TASKS_STORAGE_KEY, jsonValue)
+  }, [tasks])
+
+  const getData = async () => {
+    const jsonValue = await AsyncStorage.getItem(TASKS_STORAGE_KEY)
+    const data = jsonValue != null ? JSON.parse(jsonValue) : []
+    setTasks(data)
+  }
+
+  useEffect(() => {
+    if (!isDataFetched) {
+      getData()
+      setIsDataFetched(true)
+    } else {
+      storeData()
+    }
+  }, [isDataFetched, storeData, tasks])
 
   const getTask = (id: string | undefined) =>
     tasks.find((task) => task.id === id)

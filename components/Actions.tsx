@@ -1,11 +1,11 @@
-import { StyleSheet, View } from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import TimerSelectorButton from './TimerSelectorButton'
 import FokusButton from './FokusButton'
-import { TimerType } from '@/@types/TimerType'
+import {TimerType} from '@/@types/TimerType'
 import Timer from './Timer'
-import { useRef, useState } from 'react'
-import { IconPause, IconPlay } from '@/components/Icons'
-import { COLORS } from '@/constants/colors'
+import {useRef, useState} from 'react'
+import {IconPause, IconPlay} from '@/components/Icons'
+import {COLORS} from '@/constants/colors'
 
 type ActionsProps = {
   activeTimer: TimerType
